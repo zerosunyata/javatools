@@ -1,15 +1,24 @@
-package test;
+package hal;
 import java.awt.*;
-import java.util.*;
 
-public class test {
+public class hal {
 	public static void main(String[] args) throws Exception{
 		Robot hal = new Robot();
 		//Random random = new Random();
+		int i = 0;
 		while(true){
 			hal.delay(100*60);
-			double x = (MouseInfo.getPointerInfo().getLocation().getX() + 1)%2360;
-			double y = (MouseInfo.getPointerInfo().getLocation().getY() + 1)%1920;
+			double x = MouseInfo.getPointerInfo().getLocation().getX();
+			double y = MouseInfo.getPointerInfo().getLocation().getY();
+			if (i == 0) {
+				x = x + 1;
+				y = y + 1;
+				i = 1;
+			}else {
+				x = x - 1;
+				y = y - 1;
+				i = 0;
+			}
 			hal.mouseMove((int)x,(int)y);
 		}
 	}
